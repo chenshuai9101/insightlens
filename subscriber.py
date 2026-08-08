@@ -14,9 +14,7 @@ import logging
 import os
 import time
 from datetime import datetime
-from pathlib import Path
-from typing import Callable, Dict, List, Optional, Set
-from urllib.parse import urlparse
+from typing import Callable, Dict, List, Optional
 
 try:
     from .models import Subscription, SubscriptionEvent

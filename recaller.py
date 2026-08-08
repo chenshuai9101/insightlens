@@ -13,8 +13,7 @@ import os
 import re
 from collections import Counter
 from datetime import datetime
-from pathlib import Path
-from typing import Dict, List, Optional, Set
+from typing import List, Optional
 from urllib.parse import urlparse
 
 try:
@@ -312,10 +311,10 @@ def _now_iso() -> str:
 
 # ===================== 测试 =====================
 if __name__ == "__main__":
+    import asyncio
     import tempfile
 
     async def test():
-        import tempfile
         with tempfile.TemporaryDirectory() as tmpdir:
             r = Recaller(store_dir=tmpdir)
 

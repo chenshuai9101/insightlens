@@ -25,7 +25,7 @@ import json
 import logging
 import sys
 import traceback
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 try:
     from .lens_engine import LensEngine

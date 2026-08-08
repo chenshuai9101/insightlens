@@ -8,7 +8,7 @@ InsightLens — 核心提取引擎
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 try:
     from .extractor import extract_url as _extract_url

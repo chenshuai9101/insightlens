@@ -10,7 +10,6 @@ InsightLens — 网页结构化提取器
 
 from __future__ import annotations
 
-import hashlib
 import logging
 import random
 import re
@@ -21,7 +20,6 @@ from urllib.parse import urljoin, urlparse
 try:
     from .models import (
         ExtractionResult,
-        ExtractionMetadata,
         Link,
         Table,
         TableRow,
@@ -29,7 +27,6 @@ try:
 except ImportError:
     from models import (
         ExtractionResult,
-        ExtractionMetadata,
         Link,
         Table,
         TableRow,
@@ -642,7 +639,6 @@ def _fetch_html_stdlib(url: str, timeout: int = 30) -> Optional[str]:
     """使用 urllib 兜底获取 HTML（无 httpx 时）"""
     try:
         from urllib.request import Request, urlopen
-        from urllib.error import URLError
 
         req = Request(
             url,

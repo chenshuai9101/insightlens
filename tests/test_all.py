@@ -10,12 +10,10 @@ InsightLens — 单元测试
 """
 
 import asyncio
-import json
 import os
 import sys
 import tempfile
 import unittest
-from unittest.mock import AsyncMock, MagicMock, patch
 
 
 # 确保 insightlens 包在路径上
@@ -23,11 +21,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from models import (
     ExtractionResult,
-    ExtractionMetadata,
     SearchResponse,
     SearchResult,
     Subscription,
-    SubscriptionEvent,
     MemoryItem,
     RecallResult,
     Link,
