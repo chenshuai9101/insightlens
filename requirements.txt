@@ -8,3 +8,7 @@ lxml>=4.6.0               # 快速 XML/HTML 解析器
 
 # 推荐
 httpx>=0.24.0             # 异步 HTTP 客户端（用于搜索和订阅）
+
+# HTTP 服务模式（python3 -m insightlens --http 时使用）
+fastapi>=0.104.0
+uvicorn>=0.24.0

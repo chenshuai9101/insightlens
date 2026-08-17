@@ -9,12 +9,12 @@
 
 Read the web. Your way. Zero dependencies.
 
-InsightLens extracts structured content from any URL — no HTML/CSS parsing complexity, no Playwright, no Selenium, no BeautifulSoup. Just clean JSON your agent can use.
+InsightLens extracts structured content from any URL — no HTML/CSS parsing complexity, no Playwright, no Selenium. Just clean JSON your agent can use.
 
 ## Features
 
 - **6 MCP tools**: extract, search, subscribe, recall, list_subscriptions, unsubscribe
-- **Zero dependencies**: pure Python stdlib + httpx
+- **Small dependency footprint**: 标准库 + `beautifulsoup4` / `lxml` / `httpx`（HTTP 模式另需 `fastapi` / `uvicorn`）
 - **Smart page type detection**: article, listing, profile, search, error
 - **Memory system**: cross-page topic association and recall
 - **Change monitoring**: subscribe to URL changes with auto-notification
@@ -34,6 +34,9 @@ e = LensEngine()
 r = asyncio.run(e.extract('https://example.com'))
 print(r)
 "
+
+# 或启动 HTTP 服务（供 InsightHub 等外部系统调用，端口 9091）
+python3 -m insightlens --http
 ```
 
 ## MCP Tools

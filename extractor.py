@@ -518,6 +518,13 @@ async def extract_url(
 
     start_time = time.time()
 
+    # ----- Step 0: URL 校验（仅允许 http/https，防 file:// 等协议注入）-----
+    parsed = urlparse(url)
+    if parsed.scheme not in ("http", "https") or not parsed.hostname:
+        result.metadata.error = "仅支持 http/https URL"
+        result.metadata.response_time_ms = 0
+        return result
+
     # ----- Step 1: 获取 HTML -----
     html_content = await _fetch_html(url, timeout)
     if html_content is None:
@@ -603,10 +610,12 @@ async def _fetch_html(url: str, timeout: int = 30) -> Optional[str]:
     # 尝试 2 次
     for attempt in range(2):
         try:
+            import os as _os
+            # 默认校验 TLS 证书；仅本地开发可用 INSIGHTLENS_INSECURE_TLS=1 关闭
             async with httpx.AsyncClient(
                 timeout=timeout,
                 follow_redirects=True,
-                verify=False,  # 忽略 SSL 证书错误
+                verify=_os.getenv("INSIGHTLENS_INSECURE_TLS", "0") != "1",
             ) as client:
                 resp = await client.get(url, headers=headers)
                 if resp.status_code == 200:
